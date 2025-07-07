@@ -1,8 +1,10 @@
 import { Link, useLocation } from "react-router";
 import HeaderIcon from "../assets/header-icon.svg";
 import LoginIcon from "../assets/login.svg";
+import { useAuth } from "../providers/AuthProvider";
 
 const Header = () => {
+  const auth = useAuth();
   const { pathname } = useLocation();
   const isHome = pathname === "/home";
 
@@ -18,13 +20,21 @@ const Header = () => {
 
       {/* Right CTA */}
       {isHome ? (
-        <Link
-          to="/signin"
-          className="flex items-center gap-x-2 text-[14px] font-semibold text-black hover:underline"
-        >
-          <span>Login</span>
-          <img src={LoginIcon} alt="Login Icon" className="h-5 w-5" />
-        </Link>
+        <>
+          {auth.loggedIn ? (
+            <span className="text-[14px] font-semibold text-black">
+              {auth.user}
+            </span>
+          ) : (
+            <Link
+              to="/signin"
+              className="flex items-center gap-x-2 text-[14px] font-semibold text-black hover:underline"
+            >
+              <span>Login</span>
+              <img src={LoginIcon} alt="Login Icon" className="h-5 w-5" />
+            </Link>
+          )}
+        </>
       ) : (
         <Link
           to="/"

@@ -16,14 +16,12 @@ const SignUp = () => {
   return (
     <div className="flex h-full items-center justify-center">
       <AuthCard>
-        {/* Icon */}
         <div className="mb-6 flex justify-center">
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#f8f8f8]">
             <img src={LoginIcon} alt="Sign Up" />
           </div>
         </div>
 
-        {/* Heading */}
         <div className="mb-8 text-center">
           <h1 className="text-2xl font-semibold text-black">
             Create an account to continue
@@ -33,7 +31,6 @@ const SignUp = () => {
           </p>
         </div>
 
-        {/* Form */}
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div className="flex flex-col gap-y-1.5">
             <label htmlFor="email" className="font-medium text-black">

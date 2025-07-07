@@ -10,6 +10,12 @@ interface PostCardProps {
   children: React.ReactNode;
 }
 
+const reactions = [
+  { icon: HeartIcon, label: "Like" },
+  { icon: CommentIcon, label: "Comment" },
+  { icon: ShareIcon, label: "Share" },
+];
+
 const PostCard = ({ children }: PostCardProps) => {
   const auth = useAuth();
   const [, setSearchParams] = useSearchParams();
@@ -29,11 +35,7 @@ const PostCard = ({ children }: PostCardProps) => {
         {children}
       </div>
       <div className="flex items-center gap-6 pl-4 mt-3">
-        {[
-          { icon: HeartIcon, label: "Like" },
-          { icon: CommentIcon, label: "Comment" },
-          { icon: ShareIcon, label: "Share" },
-        ].map(({ icon, label }) => (
+        {reactions.map(({ icon, label }) => (
           <button
             aria-label={label}
             className="h-8 cursor-pointer hover:opacity-80 transition"

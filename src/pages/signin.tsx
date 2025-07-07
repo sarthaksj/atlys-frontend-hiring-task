@@ -17,6 +17,11 @@ const SignIn = () => {
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
 
+    if (!email || !password) {
+      alert("Please fill in both email and password.");
+      return;
+    }
+
     auth.initLogin({ email, password });
   };
 
@@ -29,14 +34,12 @@ const SignIn = () => {
   return (
     <div className="flex h-full items-center justify-center">
       <AuthCard>
-        {/* Icon */}
         <div className="mb-6 flex justify-center">
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#f8f8f8]">
             <img src={LoginIcon} alt="Login" />
           </div>
         </div>
 
-        {/* Heading */}
         <div className="mb-8 text-center">
           <h1 className="text-2xl font-semibold text-black">
             Sign in to continue
@@ -46,7 +49,6 @@ const SignIn = () => {
           </p>
         </div>
 
-        {/* Form */}
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div className="flex flex-col gap-y-1.5">
             <label htmlFor="email" className="font-medium text-black">

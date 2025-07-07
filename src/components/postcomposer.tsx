@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router";
+import type { PostData } from "../types/post";
+import { useAuth } from "../providers/AuthProvider";
 
 import BoldIcon from "../assets/text-bold.svg";
 import EmotionIcon from "../assets/emotion-smile.svg";
@@ -13,9 +16,6 @@ import TrashIcon from "../assets/trash.svg";
 import UnderlineIcon from "../assets/text-underline.svg";
 import UnorderedListIcon from "../assets/text-list-unordered.svg";
 import VideoCameraIcon from "../assets/video-camera.svg";
-import type { PostData } from "../types/post";
-import { useSearchParams } from "react-router";
-import { useAuth } from "../providers/AuthProvider";
 
 const PostComposer = ({
   setPosts,
@@ -37,6 +37,10 @@ const PostComposer = ({
   };
 
   const onSubmit = () => {
+    if (!auth.loggedIn) {
+      setSearchParams({ modal: "signin" });
+      return;
+    }
     if (!content.trim()) {
       alert("Please enter some content before submitting.");
       return;

@@ -7,7 +7,6 @@ type AuthCardProps = {
 
 const AuthCard = ({ children }: AuthCardProps) => {
   const { pathname, search } = useLocation();
-  console.log(search);
   const isSignIn = pathname === "/signin" || search.includes("modal=signin");
 
   return (
